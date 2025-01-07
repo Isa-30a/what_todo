@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:what_todo/ui/add_task/widgets/add_todo_screen.dart';
 import 'package:what_todo/ui/core/themes/theme.dart';
 
 import '../../../src/sample_feature/sample_item_details_view.dart';
@@ -64,23 +65,28 @@ class MyApp extends StatelessWidget {
 
           // Define a function to handle named routes in order to support
           // Flutter web url navigation and deep linking.
-          onGenerateRoute: (RouteSettings routeSettings) {
-            return MaterialPageRoute<void>(
-              settings: routeSettings,
-              builder: (BuildContext context) {
-                switch (routeSettings.name) {
-                  case SettingsView.routeName:
-                    return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
-                  default:
-                    return const SampleItemListView();
-                }
-              },
-            );
-          },
+          onGenerateRoute: routes,
         );
+      },
+    );
+  }
+
+  Route<dynamic>? routes(RouteSettings routeSettings) {
+    return MaterialPageRoute<void>(
+      settings: routeSettings,
+      builder: (BuildContext context) {
+        switch (routeSettings.name) {
+          case SettingsView.routeName:
+            return SettingsView(controller: settingsController);
+          case AddTodoScreen.routeName:
+            return const AddTodoScreen();
+          case SampleItemDetailsView.routeName:
+            return const SampleItemDetailsView();
+          case SampleItemListView.routeName:
+            return const SampleItemListView();
+          default:
+            return const AddTodoScreen();
+        }
       },
     );
   }
