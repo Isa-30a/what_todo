@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../src/app.dart';
-import 'settings/settings_controller.dart';
-import 'settings/settings_service.dart';
+import 'ui/core/ui/app.dart';
+import 'config/settings/settings_controller.dart';
+import 'config/settings/settings_service.dart';
 
 void main() async {
   // Set up the SettingsController, which will glue user settings to multiple
