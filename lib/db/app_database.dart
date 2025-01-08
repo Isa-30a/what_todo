@@ -3,7 +3,6 @@ import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-import 'package:what_todo/data/model/task.dart';
 
 import 'tables.dart'; // Importa las tablas
 
@@ -19,7 +18,10 @@ class AppDatabase extends _$AppDatabase {
   // Consultas personalizadas
   Future<List<Task>> getAllTasks() => select(tasks).get();
   Future<int> insertTask(TasksCompanion task) => into(tasks).insert(task);
-  Future<int> deleteTask(int id) => (delete(tasks)..where((t) => t.id.equals(id))).go();
+  Future<int> deleteTask(int id) =>
+      (delete(tasks)..where((t) => t.id.equals(id))).go();
+  Future<bool> updateTask(Task task) =>
+      (update(tasks)..where((t) => t.id.equals(task.id))).replace(task);
 }
 
 LazyDatabase _openConnection() {
