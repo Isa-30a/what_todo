@@ -5,7 +5,7 @@ import 'package:what_todo/ui/add_task/widgets/add_todo_screen.dart';
 import 'package:what_todo/ui/core/themes/theme.dart';
 
 import '../../../src/sample_feature/sample_item_details_view.dart';
-import '../../../src/sample_feature/sample_item_list_view.dart';
+import '../../../src/sample_feature/tasks_list_view.dart';
 import '../../../config/settings/settings_controller.dart';
 import '../../../config/settings/settings_view.dart';
 
@@ -82,8 +82,6 @@ class MyApp extends StatelessWidget {
             return const AddTodoScreen();
           case SampleItemDetailsView.routeName:
             return const SampleItemDetailsView();
-          case SampleItemListView.routeName:
-            return const SampleItemListView();
           default:
             return const AddTodoScreen();
         }
