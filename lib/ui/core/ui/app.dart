@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:what_todo/ui/add_task/widgets/add_todo_screen.dart';
+import 'package:what_todo/ui/add_task/widgets/new_todo_screen.dart';
 import 'package:what_todo/ui/core/themes/theme.dart';
 
 import '../../../src/sample_feature/sample_item_details_view.dart';
-import '../../../src/sample_feature/tasks_list_view.dart';
 import '../../../config/settings/settings_controller.dart';
 import '../../../config/settings/settings_view.dart';
 
