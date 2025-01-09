@@ -36,4 +36,34 @@ class DatabaseHelper {
       )
     ''');
   }
+
+  Future<int> insertTask(Map<String, dynamic> task) async {
+    final db = await database;
+    return await db.insert('tasks', task);
+  }
+
+
+  Future<List<Map<String, dynamic>>> getAllItems() async {
+    final db = await database;
+    return await db.query('tasks');
+  }
+
+  Future<int> updateItem(Map<String, dynamic> task) async {
+    final db = await database;
+    return await db.update(
+      'tasks',
+      task,
+      where: 'id = ?',
+      whereArgs: [task['id']],
+    );
+  }
+
+  Future<int> deleteItem(int id) async {
+    final db = await database;
+    return await db.delete(
+      'items',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
 }
