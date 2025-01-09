@@ -27,12 +27,12 @@ class DatabaseHelper {
     );
   }
 
-  Future<void> _onCreate(Database db, int version)async{
+  Future<void> _onCreate(Database db, int version) async {
     await db.execute('''
       CREATE TABLE tasks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
-        conplete TEXT
+        complete INTEGER NOT NULL
       )
     ''');
   }
