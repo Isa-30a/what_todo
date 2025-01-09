@@ -32,7 +32,7 @@ class DatabaseHelper {
       CREATE TABLE tasks (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT NOT NULL,
-        complete INTEGER NOT NULL
+        completed INTEGER NOT NULL
       )
     ''');
   }
