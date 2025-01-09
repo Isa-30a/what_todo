@@ -1,15 +1,31 @@
 class Task {
-  Task({required this.id, required this.name, this.completed = false});
+  Task({required this.id, required this.title, this.completed = false});
 
   final int id;
-  final String name;
+  final String title;
   final bool completed;
 
   Task copyWith({int? id, String? name, bool? completed}) {
     return Task(
       id: id ?? this.id,
-      name: name ?? this.name,
+      title: name ?? this.title,
       completed: completed ?? this.completed,
     );
+  }
+
+  factory Task.fromJson(Map<String, dynamic> json) {
+    return Task(
+      id: json['id'],
+      title: json['name'],
+      completed: json['completed'] ?? false,
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': title,
+      'completed': completed,
+    };
   }
 }
