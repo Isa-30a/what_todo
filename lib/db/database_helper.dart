@@ -42,13 +42,12 @@ class DatabaseHelper {
     return await db.insert('tasks', task);
   }
 
-
-  Future<List<Map<String, dynamic>>> getAllItems() async {
+  Future<List<Map<String, dynamic>>> getAllTasks() async {
     final db = await database;
     return await db.query('tasks');
   }
 
-  Future<int> updateItem(Map<String, dynamic> task) async {
+  Future<int> updateTask(Map<String, dynamic> task) async {
     final db = await database;
     return await db.update(
       'tasks',
@@ -58,7 +57,7 @@ class DatabaseHelper {
     );
   }
 
-  Future<int> deleteItem(int id) async {
+  Future<int> deleteTask(int id) async {
     final db = await database;
     return await db.delete(
       'items',
