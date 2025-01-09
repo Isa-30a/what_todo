@@ -10,7 +10,6 @@ environment:
   sdk: ^3.6.0
 
 dependencies:
-  drift: ^2.23.1
   drift_flutter: ^0.2.4
   flutter:
     sdk: flutter
