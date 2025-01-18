@@ -1,35 +1,22 @@
 import 'package:flutter/material.dart';
-
-import '../../config/settings/settings_view.dart';
-import 'sample_item.dart';
+import 'package:what_todo/data/model/task.dart';
+import 'package:what_todo/ui/add_task/widgets/task_list_tile.dart';
 
 /// Displays a list of SampleItems.
 class TasksListView extends StatelessWidget {
   const TasksListView({
     super.key,
-    this.tasks = const [SampleItem(1), SampleItem(2), SampleItem(3)],
+    this.tasks = const [
+      Task(title: 'NewTask', id: 0),
+      Task(id: 1, title: 'Taask')
+    ],
   });
 
-  final List<SampleItem> tasks;
+  final List<Task> tasks;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Todo'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () {
-              // Navigate to the settings page. If the user leaves and returns
-              // to the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              Navigator.restorablePushNamed(context, SettingsView.routeName);
-            },
-          ),
-        ],
-      ),
-
       // To work with lists that may contain a large number of items, it’s best
       // to use the ListView.builder constructor.
       //
@@ -45,22 +32,7 @@ class TasksListView extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           final item = tasks[index];
 
-          return ListTile(
-            title: Text('Task ${item.id}'),
-            leading: const CircleAvatar(
-              // Display the Flutter Logo image asset.
-              foregroundImage: AssetImage('assets/images/flutter_logo.png'),
-            ),
-            onTap: () {
-              // Navigate to the details page. If the user leaves and returns to
-              // the app after it has been killed while running in the
-              // background, the navigation stack is restored.
-              // Navigator.restorablePushNamed(
-              //   context,
-              //   SampleItemDetailsView.routeName,
-              // );
-            }
-          );
+          return TaskListTile(task: item);
         },
       ),
     );
