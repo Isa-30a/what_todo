@@ -11,19 +11,22 @@ class TaskListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(task.title),
-      leading: CircleAvatar(
-        radius: 50,
-        // backgroundImage: AssetImage(Assets.bgMobileDark),
-        child: IconButton(
-          onPressed: () {},
-          icon: (task.completed ?? false)
-              ? Icon(Icons.check)
-              : Icon(Icons.circle_outlined),
+    return Card(
+      child: ListTile(
+        contentPadding: EdgeInsets.all(0),
+        title: Text(task.title),
+        leading: CircleAvatar(
+          radius: 50,
+          // backgroundImage: AssetImage(Assets.bgMobileDark),
+          child: IconButton(
+            onPressed: () {},
+            icon: (task.completed ?? false)
+                ? Icon(Icons.check)
+                : Icon(Icons.circle_outlined),
+          ),
         ),
+        trailing: IconButton(onPressed: () {}, icon: Icon(Icons.close)),
       ),
-      trailing: IconButton(onPressed: () {}, icon: Icon(Icons.close)),
     );
   }
 }
