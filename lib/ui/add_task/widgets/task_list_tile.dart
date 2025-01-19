@@ -12,10 +12,9 @@ class TaskListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      contentPadding: EdgeInsets.symmetric(horizontal: 0),
       title: Text(task.title),
       leading: CircleAvatar(
-        radius: 50,
+        radius: 20,
         // backgroundImage: AssetImage(Assets.bgMobileDark),
         child: IconButton(
           onPressed: () {},
