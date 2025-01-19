@@ -1,7 +1,7 @@
 class Task {
-  const Task({required this.id, required this.title, this.completed});
+  const Task({this.id, required this.title, this.completed});
 
-  final int id;
+  final int? id;
   final String title;
   final bool? completed;
 
