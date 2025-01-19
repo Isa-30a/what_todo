@@ -6,4 +6,4 @@ class NewTodoVm {
    }): _taskRepository = taskRepository;
 
     final TaskRepository _taskRepository;
-};
+}
