@@ -23,17 +23,22 @@ class TasksListView extends StatelessWidget {
       // In contrast to the default ListView constructor, which requires
       // building all Widgets up front, the ListView.builder constructor lazily
       // builds Widgets as they’re scrolled into view.
-      body: ListView.builder(
-        // Providing a restorationId allows the ListView to restore the
-        // scroll position when a user leaves and returns to the app after it
-        // has been killed while running in the background.
-        restorationId: 'tasksListView',
-        itemCount: tasks.length,
-        itemBuilder: (BuildContext context, int index) {
-          final item = tasks[index];
+      body: Card(
+        child: ListView.separated(
+          separatorBuilder: (BuildContext context, int index) =>
+              const Divider(),
 
-          return TaskListTile(task: item);
-        },
+          // Providing a restorationId allows the ListView to restore the
+          // scroll position when a user leaves and returns to the app after it
+          // has been killed while running in the background.
+          restorationId: 'tasksListView',
+          itemCount: tasks.length,
+          itemBuilder: (BuildContext context, int index) {
+            final item = tasks[index];
+
+            return TaskListTile(task: item);
+          },
+        ),
       ),
     );
   }
