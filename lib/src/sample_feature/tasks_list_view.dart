@@ -16,46 +16,49 @@ class TasksListView extends StatelessWidget {
       // In contrast to the default ListView constructor, which requires
       // building all Widgets up front, the ListView.builder constructor lazily
       // builds Widgets as they’re scrolled into view.
-      floatingActionButton: Consumer<TodoProvider>(
+
+      body: Consumer<TodoProvider>(
         builder: (context, notifier, child) {
-          return FloatingActionButton(
-            onPressed:
-                notifier.refresh, // Llama al método para refrescar los datos
-            child: Icon(Icons.refresh),
+          return RefreshIndicator(
+            onRefresh: () async {
+              notifier.refresh();
+              return;
+            },
+            child: Card(
+              child: Consumer<TodoProvider>(
+                builder: (context, notifier, child) {
+                  return FutureBuilder(
+                    future: notifier.futureData,
+                    builder: (context, snapshot) {
+                      return ListView.separated(
+                        separatorBuilder: (BuildContext context, int index) =>
+                            const Divider(),
+                        // Providing a restorationId allows the ListView to restore the
+                        // scroll position when a user leaves and returns to the app after it
+                        // has been killed while running in the background.
+                        restorationId: 'tasksListView',
+                        itemCount: snapshot.hasData ? snapshot.data!.length : 0,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return CircularProgressIndicator();
+                          } else if (snapshot.hasError) {
+                            return Text('Error: ${snapshot.error}');
+                          } else if (snapshot.hasData) {
+                            final item = snapshot.data![index];
+                            return TaskListTile(task: item);
+                          } else {
+                            return Text('Sin datos');
+                          }
+                        },
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
           );
         },
-      ),
-      body: Card(
-        child: Consumer<TodoProvider>(
-          builder: (context, notifier, child) {
-            return FutureBuilder(
-              future: notifier.futureData,
-              builder: (context, snapshot) {
-                return ListView.separated(
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const Divider(),
-                  // Providing a restorationId allows the ListView to restore the
-                  // scroll position when a user leaves and returns to the app after it
-                  // has been killed while running in the background.
-                  restorationId: 'tasksListView',
-                  itemCount: snapshot.hasData ? snapshot.data!.length : 0,
-                  itemBuilder: (BuildContext context, int index) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else if (snapshot.hasData) {
-                      final item = snapshot.data![index];
-                      return TaskListTile(task: item);
-                    } else {
-                      return Text('Sin datos');
-                    }
-                  },
-                );
-              },
-            );
-          },
-        ),
       ),
     );
   }
