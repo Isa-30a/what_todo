@@ -17,7 +17,7 @@ class Task {
     return Task(
       id: json['id'],
       title: json['title'],
-      completed: json['completed'] ?? false,
+      completed: json['completed'] == 1 ? true : false,
     );
   }
 
