@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:what_todo/data/model/task.dart';
+import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 
 class TaskListTile extends StatelessWidget {
   const TaskListTile({
@@ -18,12 +20,20 @@ class TaskListTile extends StatelessWidget {
         // backgroundImage: AssetImage(Assets.bgMobileDark),
         child: IconButton(
           onPressed: () {},
-          icon: (task.completed ?? false)
+          icon: (task.completed)
               ? Icon(Icons.check)
               : Icon(Icons.circle_outlined),
         ),
       ),
-      trailing: IconButton(onPressed: () {}, icon: Icon(Icons.close)),
+      trailing: IconButton(
+        onPressed: () {
+          if (task.id != null) {
+            Provider.of<TodoProvider>(context, listen: false)
+                .deleteTask(task.id!);
+          }
+        },
+        icon: Icon(Icons.close),
+      ),
     );
   }
 }
