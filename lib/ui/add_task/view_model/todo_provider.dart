@@ -21,10 +21,11 @@ class TodoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Future<String> fetchData() async {
-  //   await Future.delayed(Duration(seconds: 2));
-  //   return "Datos cargados: ${DateTime.now()}";
-  // }
+  Future<void> deleteTask(int id) async {
+    vm.deleteTask(id);
+    notifyListeners();
+    refresh();
+  }
 
   void refresh() {
     _loadData();
