@@ -25,7 +25,7 @@ class Task {
     return {
       'id': id,
       'title': title,
-      'completed': completed,
+      'completed': completed ? 1 : 0,
     };
   }
 }
