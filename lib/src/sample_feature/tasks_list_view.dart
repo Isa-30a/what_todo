@@ -41,7 +41,7 @@ class TasksListView extends StatelessWidget {
                         itemBuilder: (BuildContext context, int index) {
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return CircularProgressIndicator();
+                            return Center(child: CircularProgressIndicator());
                           } else if (snapshot.hasError) {
                             return Text('Error: ${snapshot.error}');
                           } else if (snapshot.hasData) {
