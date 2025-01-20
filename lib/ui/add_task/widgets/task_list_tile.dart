@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:what_tnfig/assets.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/data/model/task.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
@@ -26,10 +27,8 @@ class TaskListTile extends StatelessWidget {
         maxLines: 1,
         controller: controller..text = task.title,
         onSubmitted: (String value) {
-          if (task.id != null) {
-            // Provider.of<TodoProvider>(context, listen: false)
-            //     .updateTask(task.id!, value);
-          }
+          task.copyWith(title: value);
+          Provider.of<TodoProvider>(context, listen: false).updateTask(task);
         },
       ),
       leading: CircleAvatar(
