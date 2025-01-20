@@ -49,60 +49,63 @@ class AddTodoScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  // widget Crear nuevo task
-                  Card(
-                    child: ListTile(
-                      leading: TextButton(
-                        onPressed: () {
-                          //TOdo: mark as completed
-                        },
-                        child: Icon(Icons.circle_outlined),
-                      ),
-                      title: TextField(
-                        decoration: InputDecoration(
-                          border: InputBorder.none,
-                          hintText: 'Create a new todo...',
+              child: SizedBox(
+                height: MediaQuery.sizeOf(context).height - 100,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    // widget Crear nuevo task
+                    Card(
+                      child: ListTile(
+                        leading: TextButton(
+                          onPressed: () {
+                            //TOdo: mark as completed
+                          },
+                          child: Icon(Icons.circle_outlined),
                         ),
-                        textAlign: TextAlign.left,
-                        maxLines: 1,
-                        controller: controller,
-                        onSubmitted: (String value) {
-                          viewModel.insertTask(
-                            Task(title: value),
-                          );
-                        },
+                        title: TextField(
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            hintText: 'Create a new todo...',
+                          ),
+                          textAlign: TextAlign.left,
+                          maxLines: 1,
+                          controller: controller,
+                          onSubmitted: (String value) {
+                            viewModel.insertTask(
+                              Task(title: value),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
 
-                  //lista de widgets
+                    //lista de widgets
 
-                  Container(
-                    color: Colors.transparent,
-                    height: MediaQuery.sizeOf(context).height / 3,
-                    child: TasksListView(),
-                  ),
-                  //filterWidgets
-
-                  Card(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TextButton(onPressed: () {}, child: Text('All')),
-                        TextButton(onPressed: () {}, child: Text('Active')),
-                        TextButton(onPressed: () {}, child: Text('Completed'))
-                      ],
+                    Container(
+                      color: Colors.transparent,
+                      height: MediaQuery.sizeOf(context).height / 2,
+                      child: TasksListView(),
                     ),
-                  ),
-                  //coment Drag and drop1
-                  Text(
-                    'Drag and drop to reorder list',
-                    style: TextStyle(color: Colors.grey),
-                  )
-                ],
+                    //filterWidgets
+
+                    Card(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          TextButton(onPressed: () {}, child: Text('All')),
+                          TextButton(onPressed: () {}, child: Text('Active')),
+                          TextButton(onPressed: () {}, child: Text('Completed'))
+                        ],
+                      ),
+                    ),
+                    //coment Drag and drop1
+                    Text(
+                      'Drag and drop to reorder list',
+                      style: TextStyle(color: Colors.grey),
+                    )
+                  ],
+                ),
               ),
             ),
           ),
