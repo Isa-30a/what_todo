@@ -20,7 +20,7 @@ class DatabaseHelper {
 
     final path = join(dbPath, 'whatTodoDb.db');
 
-    return openDatabase(
+    return await openDatabase(
       path,
       version: 1,
       onCreate: _onCreate,
