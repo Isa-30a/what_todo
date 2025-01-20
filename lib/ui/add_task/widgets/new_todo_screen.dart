@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/config/settings/settings_view.dart';
+import 'package:what_todo/data/model/task.dart';
+import 'package:what_todo/data/repositories/task_repository.dart';
+import 'package:what_todo/data/services/task_service.dart';
 import 'package:what_todo/src/sample_feature/tasks_list_view.dart';
+import 'package:what_todo/ui/add_task/view_model/new_todo_vm.dart';
 
 class AddTodoScreen extends StatelessWidget {
   const AddTodoScreen({super.key});
@@ -9,6 +13,10 @@ class AddTodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = NewTodoVm(
+      taskRepository: TaskRepository(taskService: TaskService()),
+    );
+
     final controller = TextEditingController();
 
     return Scaffold(
@@ -40,51 +48,62 @@ class AddTodoScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                // widget Crear nuevo task
-                Card(
-                  child: ListTile(
-                    leading: TextButton(
-                      onPressed: () {},
-                      child: Icon(Icons.circle_outlined),
-                    ),
-                    title: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Create a new todo...',
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  // widget Crear nuevo task
+                  Card(
+                    child: ListTile(
+                      leading: TextButton(
+                        onPressed: () {
+                          //TOdo: mark as completed
+                        },
+                        child: Icon(Icons.circle_outlined),
                       ),
-                      textAlign: TextAlign.left,
-                      maxLines: 1,
-                      controller: controller,
-                      onSubmitted: (String value) {},
+                      title: TextField(
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Create a new todo...',
+                        ),
+                        textAlign: TextAlign.left,
+                        maxLines: 1,
+                        controller: controller,
+                        onSubmitted: (String value) {
+                          viewModel.insertTask(
+                            Task(title: value),
+                          );
+                        },
+                      ),
                     ),
                   ),
-                ),
 
-                //lista de widgets
+                  //lista de widgets
 
-                SizedBox(
-                  height: MediaQuery.sizeOf(context).height / 3,
-                  child: TasksListView(),
-                ),
-                //filterWidgets
-
-                //coment Drag and drop
-
-                Card(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      TextButton(onPressed: () {}, child: Text('All')),
-                      TextButton(onPressed: () {}, child: Text('Active')),
-                      TextButton(onPressed: () {}, child: Text('Completed'))
-                    ],
+                  Container(
+                    color: Colors.transparent,
+                    height: MediaQuery.sizeOf(context).height / 3,
+                    child: TasksListView(),
                   ),
-                ),
-                Text('Drag and drop to reorder list')
-              ],
+                  //filterWidgets
+
+                  Card(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(onPressed: () {}, child: Text('All')),
+                        TextButton(onPressed: () {}, child: Text('Active')),
+                        TextButton(onPressed: () {}, child: Text('Completed'))
+                      ],
+                    ),
+                  ),
+                  //coment Drag and drop1
+                  Text(
+                    'Drag and drop to reorder list',
+                    style: TextStyle(color: Colors.grey),
+                  )
+                ],
+              ),
             ),
           ),
         ],
