@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:path/path.dart';
-import 'package:sqflite/sqflite.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper._internal();
@@ -16,15 +18,30 @@ class DatabaseHelper {
   }
 
   Future<Database> _initDatabase() async {
+    if (!Platform.isAndroid) {
+      sqfliteFfiInit();
+      databaseFactory = databaseFactoryFfi;
+    }
+
     final dbPath = await getDatabasesPath();
 
     final path = join(dbPath, 'whatTodoDb.db');
+    if (kDebugMode) {
+      print('Database path: $path');
+    }
 
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _onCreate,
-    );
+    try {
+      return await openDatabase(
+        path,
+        version: 1,
+        onCreate: _onCreate,
+      );
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error opening database: $e');
+      }
+      rethrow;
+    }
   }
 
   Future<void> _onCreate(Database db, int version) async {
@@ -60,7 +77,7 @@ class DatabaseHelper {
   Future<int> deleteTask(int id) async {
     final db = await database;
     return await db.delete(
-      'items',
+      'tasks',
       where: 'id = ?',
       whereArgs: [id],
     );
