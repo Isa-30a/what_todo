@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
 
 import 'ui/core/ui/app.dart';
 import 'config/settings/settings_controller.dart';
@@ -7,8 +6,6 @@ import 'config/settings/settings_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
 
   // Set up the SettingsController, which will glue user settings to multiple
   // Flutter Widgets.
