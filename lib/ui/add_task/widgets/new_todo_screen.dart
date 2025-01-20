@@ -6,6 +6,7 @@ import 'package:what_todo/data/repositories/task_repository.dart';
 import 'package:what_todo/data/services/task_service.dart';
 import 'package:what_todo/src/sample_feature/tasks_list_view.dart';
 import 'package:what_todo/ui/add_task/view_model/new_todo_vm.dart';
+import 'package:what_todo/ui/add_task/widgets/layout_home_screen.dart';
 
 class AddTodoScreen extends StatelessWidget {
   const AddTodoScreen({super.key});
@@ -49,8 +50,7 @@ class AddTodoScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SingleChildScrollView(
-              child: SizedBox(
-                height: MediaQuery.sizeOf(context).height - 100,
+              child: LayoutHomeScreen(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
