@@ -21,12 +21,24 @@ class TodoProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> insertTask(Task task) async {
+    vm.insertTask(task);
+    notifyListeners();
+    refresh();
+  }
+
   Future<void> deleteTask(int id) async {
     vm.deleteTask(id);
     notifyListeners();
     refresh();
   }
 
+  Future<void> updateTask(Task task) async {
+    vm.updateTask(task);
+    notifyListeners();
+    refresh();
+  }
+  
   void refresh() {
     _loadData();
   }
