@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:what_tnfig/assets.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/data/model/task.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
