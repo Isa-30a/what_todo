@@ -4,7 +4,7 @@ import 'package:what_todo/config/settings/settings_view.dart';
 import 'package:what_todo/data/model/task.dart';
 import 'package:what_todo/data/repositories/task_repository.dart';
 import 'package:what_todo/data/services/task_service.dart';
-import 'package:what_todo/src/sample_feature/tasks_list_view.dart';
+import 'package:what_todo/ui/add_task/widgets/tasks_list_view.dart';
 import 'package:what_todo/ui/add_task/view_model/new_todo_vm.dart';
 import 'package:what_todo/ui/add_task/widgets/layout_home_screen.dart';
 
