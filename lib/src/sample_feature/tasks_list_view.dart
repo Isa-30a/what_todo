@@ -48,7 +48,7 @@ class TasksListView extends StatelessWidget {
                       final item = snapshot.data![index];
                       return TaskListTile(task: item);
                     } else {
-                      Text('Sin datos');
+                      return Text('Sin datos');
                     }
                   },
                 );
