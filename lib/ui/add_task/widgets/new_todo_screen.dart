@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/config/settings/settings_view.dart';
-import 'package:what_todo/data/model/task.dart';
 import 'package:what_todo/data/repositories/task_repository.dart';
 import 'package:what_todo/data/services/task_service.dart';
-import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/add_task/widgets/new_todo_widget.dart';
 import 'package:what_todo/ui/add_task/widgets/tasks_list_view.dart';
 import 'package:what_todo/ui/add_task/view_model/new_todo_vm.dart';
@@ -89,50 +85,6 @@ class AddTodoScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _NewTodoWidgetState extends State<NewTodoWidget> {
-  @override
-  Widget build(BuildContext context) {
-    bool isCompleted = false;
-    final controller = TextEditingController();
-
-    return Card(
-      child: ListTile(
-        leading: StatefulBuilder(
-          builder: (context, setState) {
-            return TextButton(
-              onPressed: () {
-                setState(() {
-                  isCompleted = !isCompleted;
-                });
-              },
-              child: (isCompleted)
-                  ? SvgPicture.asset(Assets.iconcheck)
-                  : Icon(Icons.circle_outlined),
-            );
-          },
-        ),
-        title: TextField(
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: 'Create a new todo...',
-          ),
-          textAlign: TextAlign.left,
-          maxLines: 1,
-          controller: controller,
-          onEditingComplete: () {
-            final taskTitle = controller.text;
-            Provider.of<TodoProvider>(context, listen: false).insertTask(
-              Task(title: taskTitle, completed: isCompleted),
-            );
-            isCompleted = false;
-            controller.clear();
-          },
-        ),
       ),
     );
   }
