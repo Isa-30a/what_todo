@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/config/settings/settings_view.dart';
 import 'package:what_todo/data/model/task.dart';
 import 'package:what_todo/data/repositories/task_repository.dart';
 import 'package:what_todo/data/services/task_service.dart';
+import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/add_task/widgets/tasks_list_view.dart';
 import 'package:what_todo/ui/add_task/view_model/new_todo_vm.dart';
 import 'package:what_todo/ui/add_task/widgets/layout_home_screen.dart';
@@ -71,10 +73,13 @@ class AddTodoScreen extends StatelessWidget {
                           textAlign: TextAlign.left,
                           maxLines: 1,
                           controller: controller,
-                          onSubmitted: (String value) {
-                            viewModel.insertTask(
-                              Task(title: value),
+                          onEditingComplete: () {
+                            final taskTitle = controller.text;
+                            Provider.of<TodoProvider>(context, listen: false)
+                                .insertTask(
+                              Task(title: taskTitle),
                             );
+                            controller.clear();
                           },
                         ),
                       ),

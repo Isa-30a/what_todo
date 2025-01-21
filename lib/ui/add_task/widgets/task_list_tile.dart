@@ -20,14 +20,16 @@ class TaskListTile extends StatelessWidget {
       title: TextField(
         decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'Create a new todo...',
         ),
         textAlign: TextAlign.left,
         maxLines: 1,
         controller: controller..text = task.title,
-        onSubmitted: (String value) {
-          task.copyWith(title: value);
-          Provider.of<TodoProvider>(context, listen: false).updateTask(task);
+        onEditingComplete: () {
+          final taskTitle = controller.text;
+          Provider.of<TodoProvider>(context, listen: false).updateTask(
+            Task(title: taskTitle),
+          );
+          controller.clear();
         },
       ),
       leading: CircleAvatar(
