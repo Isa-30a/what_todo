@@ -26,9 +26,9 @@ class TaskListTile extends StatelessWidget {
         maxLines: 1,
         controller: controller..text = task.title,
         onEditingComplete: () {
-          final taskTitle = controller.text;
+          final newTaskTitle = controller.text;
           Provider.of<TodoProvider>(context, listen: false).updateTask(
-            Task(title: taskTitle),
+            Task(title: newTaskTitle),
           );
           controller.clear();
         },
