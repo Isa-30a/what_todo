@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/data/model/task.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 
 class TaskListTile extends StatelessWidget {
@@ -35,11 +36,19 @@ class TaskListTile extends StatelessWidget {
       leading: CircleAvatar(
         radius: 20,
         backgroundImage: AssetImage(Assets.bgMobileDark),
-        child: IconButton(
-          onPressed: () {},
-          icon: (task.completed)
-              ? Icon(Icons.check)
-              : Icon(Icons.circle_outlined),
+        child: Consumer<TodoProvider>(
+          builder: (context, value, child) {
+            return TextButton(
+              onPressed: () {
+                Provider.of<TodoProvider>(context, listen: false).updateTask(
+                  task.copyWith(completed: !task.completed),
+                );
+              },
+              child: (task.completed)
+                  ? SvgPicture.asset(Assets.iconcheck)
+                  : Icon(Icons.circle_outlined),
+            );
+          },
         ),
       ),
       trailing: IconButton(
