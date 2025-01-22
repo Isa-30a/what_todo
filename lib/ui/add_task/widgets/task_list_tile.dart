@@ -33,7 +33,7 @@ class TaskListTile extends StatelessWidget {
           );
         },
       ),
-      leading: CheckButton(task: task.completed),
+      leading: CheckButton(task: task),
       trailing: IconButton(
         onPressed: () {
           if (task.id != null) {
