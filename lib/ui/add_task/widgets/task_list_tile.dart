@@ -24,6 +24,7 @@ class TaskListTile extends StatelessWidget {
         ),
         textAlign: TextAlign.left,
         maxLines: 1,
+        style: TextStyle(overflow: TextOverflow.ellipsis),
         controller: controller..text = task.title,
         onEditingComplete: () {
           final newTaskTitle = controller.text;
@@ -32,23 +33,38 @@ class TaskListTile extends StatelessWidget {
           );
         },
       ),
-      leading: CircleAvatar(
-        radius: 20,
-        backgroundImage: AssetImage(Assets.bgMobileDark),
-        child: Consumer<TodoProvider>(
-          builder: (context, value, child) {
-            return TextButton(
-              onPressed: () {
-                Provider.of<TodoProvider>(context, listen: false).updateTask(
-                  task.copyWith(completed: !task.completed),
-                );
-              },
+      leading: Consumer<TodoProvider>(
+        builder: (context, value, child) {
+          return TextButton(
+            onPressed: () {
+              Provider.of<TodoProvider>(context, listen: false).updateTask(
+                task.copyWith(completed: !task.completed),
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Colors.blue, Colors.purple],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(100)),
+              ),
+              height: 30,
+              width: 30,
               child: (task.completed)
-                  ? SvgPicture.asset(Assets.iconcheck)
-                  : Icon(Icons.circle_outlined),
-            );
-          },
-        ),
+                  ? SvgPicture.asset(
+                      Assets.iconcheck,
+                      fit: BoxFit.scaleDown,
+                    )
+                  : CircleAvatar(
+                      radius: 1,
+                      backgroundColor: Theme.of(context).canvasColor,
+                    ),
+            ),
+          );
+        },
       ),
       trailing: IconButton(
         onPressed: () {
