@@ -87,11 +87,15 @@ class MyApp extends StatelessWidget {
           case SettingsView.routeName:
             return SettingsView(controller: settingsController);
           case AddTodoScreen.routeName:
-            return const AddTodoScreen();
+            return AddTodoScreen(
+              controller: settingsController,
+            );
           case SampleItemDetailsView.routeName:
             return const SampleItemDetailsView();
           default:
-            return const AddTodoScreen();
+            return AddTodoScreen(
+              controller: settingsController,
+            );
         }
       },
     );
