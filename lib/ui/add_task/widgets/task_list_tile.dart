@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/data/model/task.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/core/ui/check_button.dart';
 
@@ -25,6 +23,7 @@ class TaskListTile extends StatelessWidget {
           onEnter: (_) => setState(() => isHovered = true),
           onExit: (_) => setState(() => isHovered = false),
           child: ListTile(
+            leading: CheckButton(task: task),
             title: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,
@@ -40,7 +39,6 @@ class TaskListTile extends StatelessWidget {
                 );
               },
             ),
-            leading: CheckButton(task: task),
             trailing: isHovered
                 ? IconButton(
                     onPressed: () {
