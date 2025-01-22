@@ -23,7 +23,14 @@ class TaskListTile extends StatelessWidget {
           onEnter: (_) => setState(() => isHovered = true),
           onExit: (_) => setState(() => isHovered = false),
           child: ListTile(
-            leading: CheckButton(task: task),
+            leading: CheckButton(
+              isCompleted: task.completed,
+              onPressed: () {
+                Provider.of<TodoProvider>(context, listen: false).updateTask(
+                  task.copyWith(completed: !task.completed),
+                );
+              },
+            ),
             title: TextField(
               decoration: InputDecoration(
                 border: InputBorder.none,

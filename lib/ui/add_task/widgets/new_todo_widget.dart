@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/data/model/task.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
+import 'package:what_todo/ui/core/ui/check_button.dart';
 
 class NewTodoWidget extends StatefulWidget {
-  const NewTodoWidget({
-    super.key,
-  });
+  const NewTodoWidget({super.key});
 
   @override
   State<NewTodoWidget> createState() => _NewTodoWidgetState();
@@ -23,34 +20,13 @@ class _NewTodoWidgetState extends State<NewTodoWidget> {
 
     return Card(
       child: ListTile(
-        leading: TextButton(
+        leading: CheckButton(
           onPressed: () {
             setState(() {
               isCompleted = !isCompleted;
             });
           },
-          child: Container(
-            padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.blue, Colors.purple],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.all(Radius.circular(100)),
-            ),
-            height: 30,
-            width: 30,
-            child: (isCompleted)
-                ? SvgPicture.asset(
-                    Assets.iconcheck,
-                    fit: BoxFit.scaleDown,
-                  )
-                : CircleAvatar(
-                    radius: 1,
-                    backgroundColor: Theme.of(context).canvasColor,
-                  ),
-          ),
+          isCompleted: isCompleted,
         ),
         title: TextField(
           decoration: InputDecoration(
