@@ -15,26 +15,42 @@ class NewTodoWidget extends StatefulWidget {
 }
 
 class _NewTodoWidgetState extends State<NewTodoWidget> {
+  bool isCompleted = false;
+
   @override
   Widget build(BuildContext context) {
-    bool isCompleted = false;
     final controller = TextEditingController();
 
     return Card(
       child: ListTile(
-        leading: StatefulBuilder(
-          builder: (context, setState) {
-            return TextButton(
-              onPressed: () {
-                setState(() {
-                  isCompleted = !isCompleted;
-                });
-              },
-              child: (isCompleted)
-                  ? SvgPicture.asset(Assets.iconcheck)
-                  : Icon(Icons.circle_outlined),
-            );
+        leading: TextButton(
+          onPressed: () {
+            setState(() {
+              isCompleted = !isCompleted;
+            });
           },
+          child: Container(
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.purple],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+            ),
+            height: 30,
+            width: 30,
+            child: (isCompleted)
+                ? SvgPicture.asset(
+                    Assets.iconcheck,
+                    fit: BoxFit.scaleDown,
+                  )
+                : CircleAvatar(
+                    radius: 1,
+                    backgroundColor: Theme.of(context).canvasColor,
+                  ),
+          ),
         ),
         title: TextField(
           decoration: InputDecoration(
