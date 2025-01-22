@@ -28,9 +28,8 @@ class TaskListTile extends StatelessWidget {
         onEditingComplete: () {
           final newTaskTitle = controller.text;
           Provider.of<TodoProvider>(context, listen: false).updateTask(
-            Task(title: newTaskTitle),
+            task.copyWith(title: newTaskTitle),
           );
-          controller.clear();
         },
       ),
       leading: CircleAvatar(
