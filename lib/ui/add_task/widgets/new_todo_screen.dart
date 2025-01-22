@@ -57,10 +57,12 @@ class AddTodoScreen extends StatelessWidget {
 
                     //lista de widgets
 
-                    Container(
-                      color: Colors.transparent,
+                    SizedBox(
                       height: MediaQuery.sizeOf(context).height / 2,
-                      child: TasksListView(),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(16),
+                        child: TasksListView(),
+                      ),
                     ),
                     //filterWidgets
 

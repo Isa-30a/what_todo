@@ -25,6 +25,7 @@ class TasksListView extends StatelessWidget {
               return;
             },
             child: Card(
+              margin: EdgeInsets.all(0),
               child: Consumer<TodoProvider>(
                 builder: (context, notifier, child) {
                   return FutureBuilder(
