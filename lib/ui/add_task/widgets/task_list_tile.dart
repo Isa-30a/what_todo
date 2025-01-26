@@ -19,6 +19,10 @@ class TaskListTile extends StatelessWidget {
     bool isHovered = false;
     return StatefulBuilder(
       builder: (context, setState) {
+        final isMobile = MediaQuery.of(context).size.width < 600;
+        if (isMobile) {
+          isHovered = true;
+        }
         return MouseRegion(
           onEnter: (_) => setState(() => isHovered = true),
           onExit: (_) => setState(() => isHovered = false),
@@ -37,7 +41,12 @@ class TaskListTile extends StatelessWidget {
               ),
               textAlign: TextAlign.left,
               maxLines: 1,
-              style: TextStyle(overflow: TextOverflow.ellipsis),
+              style: TextStyle(
+                overflow: TextOverflow.ellipsis,
+                decoration: task.completed
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+              ),
               controller: controller..text = task.title,
               onEditingComplete: () {
                 final newTaskTitle = controller.text;
