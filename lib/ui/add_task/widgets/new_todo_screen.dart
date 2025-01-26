@@ -32,7 +32,7 @@ class AddTodoScreen extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.sizeOf(context).height / 4,
+            height: MediaQuery.sizeOf(context).height / 2.7,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(Assets.bgDesktopDark),
