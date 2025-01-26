@@ -53,10 +53,10 @@ class AddTodoScreen extends StatelessWidget {
                         Text(
                           'TODO',
                           style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 40,
-                            letterSpacing: 10,
-                          ),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 40,
+                              letterSpacing: 10,
+                              color: Colors.white,),
                         ),
                         IconButton(
                           onPressed: () {
