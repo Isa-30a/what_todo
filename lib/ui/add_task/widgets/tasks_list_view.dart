@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:what_todo/config/settings/settings_controller.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/add_task/widgets/task_list_tile.dart';
 
 /// Displays a list of SampleItems.
 class TasksListView extends StatelessWidget {
-  const TasksListView({super.key, required this.settingsController});
+  const TasksListView({super.key});
 
-  final SettingsController settingsController;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,9 +25,6 @@ class TasksListView extends StatelessWidget {
               return;
             },
             child: Card(
-              color: settingsController.themeMode == ThemeMode.light
-                  ? Colors.white
-                  : Colors.amber,
               margin: EdgeInsets.all(0),
               child: Consumer<TodoProvider>(
                 builder: (context, notifier, child) {

@@ -36,7 +36,7 @@ class CheckButton extends StatelessWidget {
                   )
                 : CircleAvatar(
                     radius: 1,
-                    backgroundColor: Colors.white,
+                    backgroundColor: Theme.of(context).canvasColor,
                   ),
           ),
         );

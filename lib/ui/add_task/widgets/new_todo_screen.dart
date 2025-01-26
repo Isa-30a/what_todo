@@ -77,7 +77,6 @@ class AddTodoScreen extends StatelessWidget {
                     ),
                     // widget Crear nuevo task
                     NewTodoWidget(
-                      settingsController: controller,
                     ),
 
                     //lista de widgets
@@ -86,15 +85,12 @@ class AddTodoScreen extends StatelessWidget {
                       height: MediaQuery.sizeOf(context).height / 2,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(16),
-                        child: TasksListView(settingsController: controller),
+                        child: TasksListView(),
                       ),
                     ),
                     //filterWidgets
 
                     Card(
-                      color: controller.themeMode == ThemeMode.light
-                          ? Colors.white
-                          : Colors.amber,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
