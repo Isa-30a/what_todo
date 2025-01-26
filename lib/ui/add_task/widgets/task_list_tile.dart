@@ -43,9 +43,11 @@ class TaskListTile extends StatelessWidget {
               maxLines: 1,
               style: TextStyle(
                 overflow: TextOverflow.ellipsis,
+                color: task.completed ? Colors.grey : Colors.black87,
                 decoration: task.completed
                     ? TextDecoration.lineThrough
                     : TextDecoration.none,
+                decorationColor: task.completed ? Colors.grey : null,
               ),
               controller: controller..text = task.title,
               onEditingComplete: () {
@@ -63,7 +65,10 @@ class TaskListTile extends StatelessWidget {
                             .deleteTask(task.id!);
                       }
                     },
-                    icon: Icon(Icons.close),
+                    icon: Icon(
+                      Icons.close,
+                      color: Colors.grey[600],
+                    ),
                   )
                 : null,
           ),

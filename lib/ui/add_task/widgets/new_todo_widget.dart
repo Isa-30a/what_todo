@@ -33,6 +33,9 @@ class _NewTodoWidgetState extends State<NewTodoWidget> {
             border: InputBorder.none,
             hintText: 'Create a new todo...',
           ),
+          style: TextStyle(
+            color: Colors.black87,
+          ),
           textAlign: TextAlign.left,
           maxLines: 1,
           controller: controller,
