@@ -41,7 +41,7 @@ class AddTodoScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 8),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 32),
             child: SingleChildScrollView(
               child: LayoutHomeScreen(
                 child: Column(
