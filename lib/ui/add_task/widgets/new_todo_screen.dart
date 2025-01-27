@@ -54,7 +54,11 @@ class AddTodoScreen extends StatelessWidget {
                           'TODO',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 40,
+                            fontSize: Theme.of(context)
+                                    .textTheme
+                                    .headlineLarge!
+                                    .fontSize ??
+                                40,
                             letterSpacing: 10,
                             color: Colors.white,
                           ),
@@ -81,7 +85,7 @@ class AddTodoScreen extends StatelessWidget {
                     //lista de widgets
 
                     TasksListAndFilter(),
-                    
+
                     //coment Drag and drop1
                     Text(
                       'Drag and drop to reorder list',
