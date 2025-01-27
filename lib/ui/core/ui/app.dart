@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/add_task/widgets/new_todo_screen.dart';
+import 'package:what_todo/ui/core/themes/darkTheme.dart';
 import 'package:what_todo/ui/core/themes/theme.dart';
 
 import '../../../src/sample_feature/sample_item_details_view.dart';
@@ -67,7 +68,7 @@ class MyApp extends StatelessWidget {
             // preferred ThemeMode (light, dark, or system default) from the
             // SettingsController to display the correct theme.
             theme: lightTheme,
-            darkTheme: ThemeData.dark(),
+            darkTheme: darkTheme,
             themeMode: settingsController.themeMode,
 
             // Define a function to handle named routes in order to support
