@@ -6,15 +6,13 @@ class TasksListAndFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget filterTab = Card(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(onPressed: () {}, child: Text('All')),
-          TextButton(onPressed: () {}, child: Text('Active')),
-          TextButton(onPressed: () {}, child: Text('Completed'))
-        ],
-      ),
+    Widget filterTab = Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(onPressed: () {}, child: Text('All')),
+        TextButton(onPressed: () {}, child: Text('Active')),
+        TextButton(onPressed: () {}, child: Text('Completed'))
+      ],
     );
     return LayoutBuilder(
       builder: (context, constraints) {
@@ -29,7 +27,7 @@ class TasksListAndFilter extends StatelessWidget {
                 child: TasksListView(child: maxWidth >= 600 ? filterTab : null),
               ),
             ),
-            if (maxWidth < 600) filterTab,
+            if (maxWidth < 600) Card(child: filterTab),
           ],
         );
       },
