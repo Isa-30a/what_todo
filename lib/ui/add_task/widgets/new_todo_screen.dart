@@ -41,7 +41,7 @@ class AddTodoScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 16, right: 16, top: 32),
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: SingleChildScrollView(
               child: LayoutHomeScreen(
                 child: Column(
@@ -50,17 +50,20 @@ class AddTodoScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'TODO',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: Theme.of(context)
-                                    .textTheme
-                                    .headlineLarge!
-                                    .fontSize ??
-                                40,
-                            letterSpacing: 10,
-                            color: Colors.white,
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Text(
+                            'TODO',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge!
+                                      .fontSize ??
+                                  40,
+                              letterSpacing: 10,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         IconButton(
