@@ -32,10 +32,9 @@ class _NewTodoWidgetState extends State<NewTodoWidget> {
             border: InputBorder.none,
             hintText: 'Create a new todo...',
             hintStyle: TextStyle(
-              color: Colors.grey,
+              color: Theme.of(context).disabledColor,
             ),
           ),
-          style: TextStyle(color: Colors.black87),
           textAlign: TextAlign.left,
           maxLines: 1,
           controller: controller,
