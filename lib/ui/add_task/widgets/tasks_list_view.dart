@@ -4,9 +4,16 @@ import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/add_task/widgets/task_list_tile.dart';
 
 /// Displays a list of SampleItems.
-class TasksListView extends StatelessWidget {
+class TasksListView extends StatefulWidget {
   const TasksListView({super.key, this.child});
   final Widget? child;
+
+  @override
+  State<TasksListView> createState() => _TasksListViewState();
+}
+
+class _TasksListViewState extends State<TasksListView> {
+  bool _hovering = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +58,38 @@ class TasksListView extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Text(snapshot.hasData
-                                ? '${snapshot.data!.length} items left'
-                                : 'No items left'),
-                            this.child ?? SizedBox(),
+                            Text(
+                              snapshot.hasData
+                                  ? '${snapshot.data!.length} items left'
+                                  : 'No items left',
+                              style: TextStyle(
+                                  color: Theme.of(context).disabledColor),
+                            ),
+                            this.widget.child ?? SizedBox(),
                             TextButton(
-                              onPressed: () {},
-                              child: Text('Clear completed'),
+                              onPressed: () {
+                                // notifier.clearCompleted();
+                              },
+                              child: MouseRegion(
+                                onEnter: (event) {
+                                  setState(() {
+                                    _hovering = true;
+                                  });
+                                },
+                                onExit: (event) {
+                                  setState(() {
+                                    _hovering = false;
+                                  });
+                                },
+                                child: Text(
+                                  'Clear Completed',
+                                  style: TextStyle(
+                                    color: _hovering
+                                        ? Colors.white
+                                        : Theme.of(context).disabledColor,
+                                  ),
+                                ),
+                              ),
                             )
                           ],
                         ),
