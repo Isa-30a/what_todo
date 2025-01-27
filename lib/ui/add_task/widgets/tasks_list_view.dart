@@ -33,7 +33,9 @@ class TasksListView extends StatelessWidget {
                     builder: (context, snapshot) {
                       return ListView.separated(
                         separatorBuilder: (BuildContext context, int index) =>
-                            const Divider(),
+                            Divider(
+                          color: Theme.of(context).disabledColor,
+                        ),
                         // Providing a restorationId allows the ListView to restore the
                         // scroll position when a user leaves and returns to the app after it
                         // has been killed while running in the background.

@@ -43,7 +43,7 @@ class TaskListTile extends StatelessWidget {
               maxLines: 1,
               style: TextStyle(
                 overflow: TextOverflow.ellipsis,
-                color: task.completed ? Colors.grey : Colors.black87,
+                color: task.completed ? Theme.of(context).disabledColor : null,
                 decoration: task.completed
                     ? TextDecoration.lineThrough
                     : TextDecoration.none,

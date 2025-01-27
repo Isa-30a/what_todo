@@ -76,8 +76,7 @@ class AddTodoScreen extends StatelessWidget {
                       ],
                     ),
                     // widget Crear nuevo task
-                    NewTodoWidget(
-                    ),
+                    NewTodoWidget(),
 
                     //lista de widgets
 
@@ -92,7 +91,7 @@ class AddTodoScreen extends StatelessWidget {
 
                     Card(
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           TextButton(onPressed: () {}, child: Text('All')),
                           TextButton(onPressed: () {}, child: Text('Active')),
