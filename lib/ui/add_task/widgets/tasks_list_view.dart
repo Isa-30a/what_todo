@@ -26,35 +26,28 @@ class TasksListView extends StatelessWidget {
             },
             child: Card(
               margin: EdgeInsets.all(0),
-              child: Consumer<TodoProvider>(
-                builder: (context, notifier, child) {
-                  return FutureBuilder(
-                    future: notifier.futureData,
-                    builder: (context, snapshot) {
-                      return ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) =>
-                            Divider(
-                          color: Theme.of(context).disabledColor,
-                        ),
-                        // Providing a restorationId allows the ListView to restore the
-                        // scroll position when a user leaves and returns to the app after it
-                        // has been killed while running in the background.
-                        restorationId: 'tasksListView',
-                        itemCount: snapshot.hasData ? snapshot.data!.length : 0,
-                        itemBuilder: (BuildContext context, int index) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return Center(child: CircularProgressIndicator());
-                          } else if (snapshot.hasError) {
-                            return Text('Error: ${snapshot.error}');
-                          } else if (snapshot.hasData) {
-                            final item = snapshot.data![index];
-                            return TaskListTile(task: item);
-                          } else {
-                            return Text('Sin datos');
-                          }
-                        },
-                      );
+              child: FutureBuilder(
+                future: notifier.futureData,
+                builder: (context, snapshot) {
+                  return ListView.separated(
+                    separatorBuilder: (BuildContext context, int index) =>
+                        Divider(color: Theme.of(context).disabledColor),
+                    // Providing a restorationId allows the ListView to restore the
+                    // scroll position when a user leaves and returns to the app after it
+                    // has been killed while running in the background.
+                    restorationId: 'tasksListView',
+                    itemCount: snapshot.hasData ? snapshot.data!.length : 0,
+                    itemBuilder: (BuildContext context, int index) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Text('Error: ${snapshot.error}');
+                      } else if (snapshot.hasData) {
+                        final item = snapshot.data![index];
+                        return TaskListTile(task: item);
+                      } else {
+                        return Text('Sin datos');
+                      }
                     },
                   );
                 },
