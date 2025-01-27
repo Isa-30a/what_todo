@@ -6,7 +6,6 @@ import 'package:what_todo/ui/core/ui/check_button.dart';
 
 class NewTodoWidget extends StatefulWidget {
   const NewTodoWidget({super.key});
-
   @override
   State<NewTodoWidget> createState() => _NewTodoWidgetState();
 }
@@ -32,6 +31,9 @@ class _NewTodoWidgetState extends State<NewTodoWidget> {
           decoration: InputDecoration(
             border: InputBorder.none,
             hintText: 'Create a new todo...',
+            hintStyle: TextStyle(
+              color: Theme.of(context).disabledColor,
+            ),
           ),
           textAlign: TextAlign.left,
           maxLines: 1,

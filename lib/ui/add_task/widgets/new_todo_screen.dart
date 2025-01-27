@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:what_todo/config/assets.dart';
 import 'package:what_todo/config/settings/settings_controller.dart';
 import 'package:what_todo/ui/add_task/widgets/new_todo_widget.dart';
-import 'package:what_todo/ui/add_task/widgets/tasks_list_view.dart';
+import 'package:what_todo/ui/add_task/widgets/tasks_list_and_filter.dart';
 import 'package:what_todo/ui/add_task/widgets/layout_home_screen.dart';
 
 class AddTodoScreen extends StatelessWidget {
@@ -32,7 +32,7 @@ class AddTodoScreen extends StatelessWidget {
       body: Stack(
         children: [
           Container(
-            height: MediaQuery.sizeOf(context).height / 4,
+            height: MediaQuery.sizeOf(context).height / 2.7,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(Assets.bgDesktopDark),
@@ -41,7 +41,7 @@ class AddTodoScreen extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.only(left: 16, right: 16),
             child: SingleChildScrollView(
               child: LayoutHomeScreen(
                 child: Column(
@@ -50,13 +50,21 @@ class AddTodoScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'TODO',
-                          style: TextStyle(
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 20),
+                          child: Text(
+                            'TODO',
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 40,
+                              fontSize: Theme.of(context)
+                                      .textTheme
+                                      .headlineLarge!
+                                      .fontSize ??
+                                  40,
                               letterSpacing: 10,
-                              color: Colors.white,),
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                         IconButton(
                           onPressed: () {
@@ -79,25 +87,8 @@ class AddTodoScreen extends StatelessWidget {
 
                     //lista de widgets
 
-                    SizedBox(
-                      height: MediaQuery.sizeOf(context).height / 2,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(16),
-                        child: TasksListView(),
-                      ),
-                    ),
-                    //filterWidgets
+                    TasksListAndFilter(),
 
-                    Card(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          TextButton(onPressed: () {}, child: Text('All')),
-                          TextButton(onPressed: () {}, child: Text('Active')),
-                          TextButton(onPressed: () {}, child: Text('Completed'))
-                        ],
-                      ),
-                    ),
                     //coment Drag and drop1
                     Text(
                       'Drag and drop to reorder list',
