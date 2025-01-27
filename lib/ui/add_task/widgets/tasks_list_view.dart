@@ -60,7 +60,7 @@ class _TasksListViewState extends State<TasksListView> {
                           children: [
                             Text(
                               snapshot.hasData
-                                  ? '${snapshot.data!.length} items left'
+                                  ? '${snapshot.data!.where((task) => !task.completed).length} items left'
                                   : 'No items left',
                               style: TextStyle(
                                   color: Theme.of(context).disabledColor),
