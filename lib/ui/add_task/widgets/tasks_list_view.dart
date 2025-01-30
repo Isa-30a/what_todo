@@ -48,6 +48,7 @@ class _TasksListViewState extends State<TasksListView> {
                             } else if (snapshot.hasData) {
                               final item = snapshot.data![index];
                               return ReorderableDragStartListener(
+                                enabled: true,
                                 key: ValueKey(item.id),
                                 index: index,
                                 child: TaskListTile(
