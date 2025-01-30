@@ -22,4 +22,8 @@ class NewTodoVm {
   Future<bool> updateTask(Task task) async {
     return await _taskRepository.updateTask(task);
   }
+
+  Future<void> clearCompleted(List<Task> tasks) async {
+    await _taskRepository.clearCompleted(tasks);
+  }
 }

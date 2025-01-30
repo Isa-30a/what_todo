@@ -39,6 +39,13 @@ class TodoProvider extends ChangeNotifier {
     refresh();
   }
 
+  Future<void> clearCompleted() async {
+    final tasks = await vm.getAllTasks();
+    await vm.clearCompleted(tasks);
+    notifyListeners();
+    refresh();
+  }
+
   Future<void> refresh() async {
     await _loadData();
   }

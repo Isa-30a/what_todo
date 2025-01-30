@@ -34,8 +34,6 @@ class _TasksListViewState extends State<TasksListView> {
                     children: [
                       Expanded(
                         child: ReorderableListView.builder(
-                          // separatorBuilder: (BuildContext context, int index) =>
-                          //     Divider(color: Theme.of(context).disabledColor),
                           buildDefaultDragHandles: false,
                           itemBuilder: (BuildContext context, int index) {
                             if (snapshot.connectionState ==
@@ -46,9 +44,12 @@ class _TasksListViewState extends State<TasksListView> {
                             } else if (snapshot.hasData) {
                               final item = snapshot.data![index];
                               return ReorderableDragStartListener(
-                                key: ValueKey(item.id),
+                                key: Key('$index'),
                                 index: index,
-                                child: TaskListTile(task: item),
+                                child: TaskListTile(
+                                  key: Key('$index'),
+                                  task: item,
+                                ),
                               );
                             } else {
                               return Text('Sin datos');
@@ -57,19 +58,6 @@ class _TasksListViewState extends State<TasksListView> {
                           restorationId: 'tasksListView',
                           itemCount:
                               snapshot.hasData ? snapshot.data!.length : 0,
-                          // itemBuilder: (BuildContext context, int index) {
-                          //   if (snapshot.connectionState ==
-                          //       ConnectionState.waiting) {
-                          //     return Center(child: CircularProgressIndicator());
-                          //   } else if (snapshot.hasError) {
-                          //     return Text('Error: ${snapshot.error}');
-                          //   } else if (snapshot.hasData) {
-                          //     final item = snapshot.data![index];
-                          //     return TaskListTile(key: ValueKey(index), task: item);
-                          //   } else {
-                          //     return Text('Sin datos');
-                          //   }
-                          // },
                           onReorder: (int oldIndex, int newIndex) {
                             setState(() {
                               if (oldIndex < newIndex) {
@@ -96,10 +84,10 @@ class _TasksListViewState extends State<TasksListView> {
                               style: TextStyle(
                                   color: Theme.of(context).disabledColor),
                             ),
-                            this.widget.child ?? SizedBox(),
+                            widget.child ?? SizedBox(),
                             TextButton(
                               onPressed: () {
-                                // notifier.clearCompleted();
+                                notifier.clearCompleted();
                               },
                               child: MouseRegion(
                                 onEnter: (event) {

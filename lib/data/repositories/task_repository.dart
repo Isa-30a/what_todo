@@ -25,4 +25,8 @@ class TaskRepository {
   Future<bool> updateTask(Task task) async {
     return await _taskService.updateTask(task);
   }
+
+  Future<void> clearCompleted(List<Task> tasks) async {
+    await _taskService.clearCompleted(tasks);
+  }
 }
