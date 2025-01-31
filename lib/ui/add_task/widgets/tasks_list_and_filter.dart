@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:what_todo/ui/add_task/view_model/todo_provider.dart';
 import 'package:what_todo/ui/add_task/widgets/tasks_list_view.dart';
 
 class TasksListAndFilter extends StatefulWidget {
@@ -48,6 +50,9 @@ class _TasksListAndFilterState extends State<TasksListAndFilter>
         unselectedLabelColor: Colors.grey,
         indicator: BoxDecoration(),
         dividerColor: Colors.transparent,
+        onTap: (index) {
+          Provider.of<TodoProvider>(context, listen: false).loadData(index);
+        },
       ),
     );
     return LayoutBuilder(

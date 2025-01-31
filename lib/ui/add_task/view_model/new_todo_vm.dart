@@ -26,4 +26,12 @@ class NewTodoVm {
   Future<void> clearCompleted(List<Task> tasks) async {
     await _taskRepository.clearCompleted(tasks);
   }
+
+  Future<List<Task>> getActiveTasks() async {
+    return await  _taskRepository.getActiveTasks();
+  }
+
+  Future<List<Task>> getCompletedTasks() async {
+    return await  _taskRepository.getCompletedTasks();
+  }
 }

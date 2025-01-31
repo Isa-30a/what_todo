@@ -35,4 +35,12 @@ class TaskService {
       }
     }
   }
+
+  Future<List<Task>> getActiveTasks() async {
+    return await _dbHelper.getActiveTasks();
+  }
+
+  Future<List<Task>> getCompletedTasks() async {
+    return await _dbHelper.getCompletedTasks();
+  }
 }
