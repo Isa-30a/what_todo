@@ -68,7 +68,15 @@ class _TasksListAndFilterState extends State<TasksListAndFilter>
                 child: TasksListView(child: maxWidth >= 600 ? tab : null),
               ),
             ),
-            if (maxWidth < 600) Card(child: tab),
+            if (maxWidth < 600)
+              Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height / 25,
+                  ),
+                  Card(child: tab),
+                ],
+              ),
           ],
         );
       },
