@@ -109,7 +109,7 @@ class _TasksListViewState extends State<TasksListView> {
                                   'Clear Completed',
                                   style: TextStyle(
                                     color: _hovering
-                                        ? Colors.white
+                                        ? Theme.of(context).indicatorColor
                                         : Theme.of(context).disabledColor,
                                   ),
                                 ),
