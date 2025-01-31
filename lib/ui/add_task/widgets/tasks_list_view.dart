@@ -34,42 +34,35 @@ class _TasksListViewState extends State<TasksListView> {
                     children: [
                       Expanded(
                         child: ReorderableListView.builder(
-                          // separatorBuilder: (BuildContext context, int index) =>
-                          //     Divider(color: Theme.of(context).disabledColor),
                           buildDefaultDragHandles: false,
                           itemBuilder: (BuildContext context, int index) {
                             if (snapshot.connectionState ==
                                 ConnectionState.waiting) {
-                              return Center(child: CircularProgressIndicator());
+                              return Center(
+                                  key: ValueKey(index),
+                                  child: CircularProgressIndicator());
                             } else if (snapshot.hasError) {
-                              return Text('Error: ${snapshot.error}');
+                              return Text(
+                                  key: ValueKey(index),
+                                  'Error: ${snapshot.error}');
                             } else if (snapshot.hasData) {
                               final item = snapshot.data![index];
                               return ReorderableDragStartListener(
+                                enabled: true,
                                 key: ValueKey(item.id),
                                 index: index,
-                                child: TaskListTile(task: item),
+                                child: TaskListTile(
+                                  key: ValueKey(item.id),
+                                  task: item,
+                                ),
                               );
                             } else {
-                              return Text('Sin datos');
+                              return Text(key: ValueKey(index), 'Sin datos');
                             }
                           },
                           restorationId: 'tasksListView',
                           itemCount:
                               snapshot.hasData ? snapshot.data!.length : 0,
-                          // itemBuilder: (BuildContext context, int index) {
-                          //   if (snapshot.connectionState ==
-                          //       ConnectionState.waiting) {
-                          //     return Center(child: CircularProgressIndicator());
-                          //   } else if (snapshot.hasError) {
-                          //     return Text('Error: ${snapshot.error}');
-                          //   } else if (snapshot.hasData) {
-                          //     final item = snapshot.data![index];
-                          //     return TaskListTile(key: ValueKey(index), task: item);
-                          //   } else {
-                          //     return Text('Sin datos');
-                          //   }
-                          // },
                           onReorder: (int oldIndex, int newIndex) {
                             setState(() {
                               if (oldIndex < newIndex) {
@@ -96,10 +89,10 @@ class _TasksListViewState extends State<TasksListView> {
                               style: TextStyle(
                                   color: Theme.of(context).disabledColor),
                             ),
-                            this.widget.child ?? SizedBox(),
+                            widget.child ?? SizedBox(),
                             TextButton(
                               onPressed: () {
-                                // notifier.clearCompleted();
+                                notifier.clearCompleted();
                               },
                               child: MouseRegion(
                                 onEnter: (event) {
@@ -116,7 +109,7 @@ class _TasksListViewState extends State<TasksListView> {
                                   'Clear Completed',
                                   style: TextStyle(
                                     color: _hovering
-                                        ? Colors.white
+                                        ? Theme.of(context).indicatorColor
                                         : Theme.of(context).disabledColor,
                                   ),
                                 ),

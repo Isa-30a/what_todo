@@ -27,4 +27,20 @@ class TaskService {
     }
     return false;
   }
+
+  Future<void> clearCompleted(List<Task> tasks) async {
+    for (var task in tasks) {
+      if (task.completed) {
+        await _dbHelper.deleteTask(task.id!);
+      }
+    }
+  }
+
+  Future<List<Task>> getActiveTasks() async {
+    return await _dbHelper.getActiveTasks();
+  }
+
+  Future<List<Task>> getCompletedTasks() async {
+    return await _dbHelper.getCompletedTasks();
+  }
 }
